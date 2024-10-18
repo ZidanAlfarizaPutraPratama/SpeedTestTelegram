@@ -1,5 +1,5 @@
 ```markdown
-# SpeedTest Telegram Bot
+# SpeedTest Telegram Bot🚀🔥
 
 Bot Telegram ini memungkinkan pengguna untuk menguji kecepatan internet mereka dengan mudah. Bot akan memeriksa apakah pengguna telah bergabung dengan channel tertentu sebelum memberikan hasil pengujian.
 
