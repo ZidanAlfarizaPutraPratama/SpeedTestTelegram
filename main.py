@@ -41,16 +41,18 @@ async def test_speed(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     user_first_name = update.message.from_user.first_name
     user_id = update.message.from_user.id
     
+    # Check subscription status
     if not await check_subscription(update, context):
         keyboard = [[InlineKeyboardButton("Masuk Dulu👀", url='https://t.me/hanyachkecil')]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text(
-            'Anda harus bergabung terlebih dahulu dengan channel kami untuk menggunakan bot ini.\n'
+            'Anda harus bergabung kembali dengan channel kami untuk menggunakan bot ini.\n'
             'Silakan bergabung terlebih dahulu:',
             reply_markup=reply_markup
         )
         return
 
+    # Register user if not already registered
     if not is_user_registered(user_id):
         register_user(user_id, user_first_name)
         await context.bot.send_message(
@@ -60,6 +62,7 @@ async def test_speed(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
 
     await update.message.reply_text('Mengukur kecepatan...🚀')
 
+    # Speed test
     st = speedtest.Speedtest()
     st.get_best_server()
     download_speed = st.download() / 1_000_000  # Convert to Mbps
